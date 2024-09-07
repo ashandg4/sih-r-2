@@ -1,0 +1,62 @@
+<!-- templates/index.html -->
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Arduino Control</title>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 100vh;
+                background-color: #f0f0f0;
+                margin: 0;
+            }
+            .controls {
+                text-align: center;
+            }
+            button {
+                background-color: #4caf50;
+                color: white;
+                border: none;
+                padding: 15px 32px;
+                text-align: center;
+                text-decoration: none;
+                display: inline-block;
+                font-size: 16px;
+                margin: 4px 2px;
+                cursor: pointer;
+                border-radius: 5px;
+            }
+            button:hover {
+                background-color: #45a049;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="controls">
+            <button id="ledOn">Turn LED On</button>
+            <button id="ledOff">Turn LED Off</button>
+        </div>
+        <script>
+            document.getElementById("ledOn").addEventListener("click", () => {
+                fetch("/send_command", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ command: "1" }),
+                });
+            });
+
+            document.getElementById("ledOff").addEventListener("click", () => {
+                fetch("/send_command", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ command: "0" }),
+                });
+            });
+        </script>
+    </body>
+</html>

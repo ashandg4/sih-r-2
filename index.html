@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Embedded System Interface</title>
+        <link rel="stylesheet" href="styles.css" />
+    </head>
+    <body>
+        <div class="container">
+            <h1>Embedded System Control</h1>
+            <div class="buttons">
+                <button id="textToSpeech">Text to Speech</button>
+                <button id="speechToText">Speech to Text</button>
+                <button
+                    id="writingPad"
+                    onclick="window.open('writingPad.html', '_blank')"
+                >
+                    Writing Pad
+                </button>
+                <button id="customization">Customization</button>
+            </div>
+        </div>
+
+        <!-- Modals -->
+        <div id="textToSpeechModal" class="modal">
+            <div class="modal-content">
+                <span class="close" id="closeTextToSpeech">&times;</span>
+                <textarea
+                    id="textInput"
+                    placeholder="Type text here..."
+                ></textarea>
+                <button id="speakText">Speak</button>
+            </div>
+        </div>
+
+        <div id="speechToTextModal" class="modal">
+            <div class="modal-content">
+                <span class="close" id="closeSpeechToText">&times;</span>
+                <p id="speechText">Speak now...</p>
+                <button id="startSpeechRecognition">Start Listening</button>
+            </div>
+        </div>
+
+        <div id="customizationModal" class="modal">
+            <div class="modal-content">
+                <span class="close" id="closeCustomization">&times;</span>
+                <label for="contrast">Contrast:</label>
+                <input
+                    type="range"
+                    id="contrast"
+                    min="0"
+                    max="2"
+                    step="0.1"
+                    value="1"
+                />
+                <label for="brightness">Brightness:</label>
+                <input
+                    type="range"
+                    id="brightness"
+                    min="0"
+                    max="2"
+                    step="0.1"
+                    value="1"
+                />
+            </div>
+        </div>
+
+        <script src="script.js"></script>
+    </body>
+</html>

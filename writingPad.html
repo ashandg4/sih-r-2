@@ -1,0 +1,54 @@
+<!-- templates/writing_pad.html -->
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Writing Pad</title>
+        <style>
+            body {
+                margin: 0;
+                padding: 0;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 100vh;
+                background-color: #a33030;
+            }
+            canvas {
+                border: 1px solid #000;
+                background-color: #fff;
+            }
+        </style>
+    </head>
+    <body>
+        <canvas id="drawingCanvas" width="800" height="600"></canvas>
+        <script>
+            const canvas = document.getElementById("drawingCanvas");
+            const context = canvas.getContext("2d");
+            let drawing = false;
+
+            canvas.addEventListener("mousedown", () => (drawing = true));
+            canvas.addEventListener("mouseup", () => (drawing = false));
+            canvas.addEventListener("mousemove", draw);
+
+            function draw(event) {
+                if (!drawing) return;
+                context.lineWidth = 5;
+                context.lineCap = "round";
+                context.strokeStyle = "#089";
+
+                context.beginPath();
+                context.moveTo(
+                    event.clientX - canvas.offsetLeft,
+                    event.clientY - canvas.offsetTop
+                );
+                context.lineTo(
+                    event.clientX - canvas.offsetLeft,
+                    event.clientY - canvas.offsetTop
+                );
+                context.stroke();
+            }
+        </script>
+    </body>
+</html>
