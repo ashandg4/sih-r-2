@@ -1,4 +1,3 @@
-<!-- templates/writing_pad.html -->
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -10,7 +9,7 @@
                 margin: 0;
                 padding: 0;
                 display: flex;
-                justify-content: center;
+                flex-direction: column;
                 align-items: center;
                 height: 100vh;
                 background-color: #a33030;
@@ -18,31 +17,61 @@
             canvas {
                 border: 1px solid #000;
                 background-color: #fff;
+                margin-top: 20px;
+            }
+            #recognizedText {
+                width: 800px;
+                margin-top: 20px;
+                padding: 10px;
+                background-color: #fff;
+                border: 1px solid #000;
+                font-size: 18px;
+                min-height: 50px;
             }
         </style>
     </head>
     <body>
         <canvas id="drawingCanvas" width="800" height="600"></canvas>
+        <div id="recognizedText">Recognized text will appear here...</div>
+
         <script>
             const canvas = document.getElementById("drawingCanvas");
             const context = canvas.getContext("2d");
-            let drawing = false;
+            const recognizedTextDiv = document.getElementById("recognizedText");
 
-            canvas.addEventListener("mousedown", () => (drawing = true));
-            canvas.addEventListener("mouseup", () => (drawing = false));
-            canvas.addEventListener("mousemove", draw);
+            // Setup WebSocket connection
+            const socket = new WebSocket("ws://localhost:8000");
 
-            function draw(event) {
-                if (!drawing) return;
-                context.lineWidth = 5;
-                context.lineCap = "round";
-                context.strokeStyle = "#089";
+            socket.onopen = function () {
+                console.log("WebSocket connection established.");
+            };
 
+            socket.onmessage = function (event) {
+                // Parse the received JSON data
+                const message = JSON.parse(event.data);
+
+                // Check the type of message
+                if (message.type === "text") {
+                    // Update the recognized text div with the received text
+                    recognizedTextDiv.textContent = message.text;
+                }
+            };
+
+            // Draw on the canvas
+            canvas.addEventListener("mousedown", (event) => {
                 context.beginPath();
                 context.moveTo(
                     event.clientX - canvas.offsetLeft,
                     event.clientY - canvas.offsetTop
                 );
+                canvas.addEventListener("mousemove", draw);
+            });
+
+            canvas.addEventListener("mouseup", () => {
+                canvas.removeEventListener("mousemove", draw);
+            });
+
+            function draw(event) {
                 context.lineTo(
                     event.clientX - canvas.offsetLeft,
                     event.clientY - canvas.offsetTop
