@@ -77,10 +77,29 @@ document.addEventListener("DOMContentLoaded", () => {
             recognition.onresult = (event) => {
                 const transcript = event.results[0][0].transcript;
                 document.getElementById("speechText").innerText = transcript;
+                fetch("/trigger-buzzer")
+                    .then((response) => response.text())
+                    .then((data) => console.log(data))
+                    .catch((error) =>
+                        console.error("Error triggering buzzer:", error)
+                    );
+                // triggerArduinoBuzzer();
             };
             recognition.start();
         } else {
             alert("Speech Recognition is not supported in this browser.");
+        }
+
+        function triggerArduinoBuzzer() {
+            fetch("http://localhost:3000/trigger-buzzer", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+            })
+                .then((response) => response.text())
+                .then((data) => console.log(data))
+                .catch((error) =>
+                    console.error("Error triggering buzzer:", error)
+                );
         }
     });
 

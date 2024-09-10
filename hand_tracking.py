@@ -140,10 +140,15 @@ try:
 
         # Trigger OCR if 'r' is pressed
         if key == ord('r'):
-            # Recognize text using OCR
+            # Preprocess the image for better OCR recognition
             imgGray = cv2.cvtColor(imgCanvas, cv2.COLOR_BGR2GRAY)
-            recognized_text = pytesseract.image_to_string(imgGray)
-            # Print recognized text to the console
+            imgGray = cv2.GaussianBlur(
+                imgGray, (5, 5), 0)  # Apply Gaussian Blur
+            _, imgThresh = cv2.threshold(
+                imgGray, 100, 255, cv2.THRESH_BINARY + cv2.THRESH_OTSU)  # Thresholding
+
+            # Recognize text using OCR
+            recognized_text = pytesseract.image_to_string(imgThresh)
             print("Recognized Text:", recognized_text)
 
             # Display recognized text on the canvas
