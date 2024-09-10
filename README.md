@@ -1,3 +1,5 @@
+How to run this locally:
+
 1. Install Necessary Tools:
 Python (if not already installed): Install Python from the official website.
 Node.js (if using Arduino or server-side scripting): Install Node.js from the official website.
