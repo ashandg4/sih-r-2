@@ -33,7 +33,7 @@ header = overlaylist[0]
 drawColor = (17, 30, 60)
 
 # Initialize the webcam capture
-cap = cv2.VideoCapture(0)
+cap = cv2.VideoCapture(1)
 cap.set(3, 1280)
 cap.set(4, 720)
 
