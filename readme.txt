@@ -1,3 +1,11 @@
+Demo Video Link: https://drive.google.com/file/d/1OevbC5pjOdXEEDgWNwaF-z9yUkD3uhaL/view?usp=drive_link
+
+Presentation link: https://docs.google.com/presentation/d/1lDOJTrNtkML59Wda4y5MqQN9WG45iwBz/edit?usp=drive_link&ouid=114347310509330026772&rtpof=true&sd=true
+
+Project github repo: https://github.com/ashandg4/sih-r-2
+
+
+
 ## Team Details
 
 *Team Name:* BYTE MECHANICS
@@ -13,9 +21,6 @@
 - *MEMBER_5* - 2023UIC3584 - [@Adityamohan01](https://github.com/Adityamohan01)
 - *MEMBER_6* - 2023UIC3570 - [@riddhisrivastava1516](https://github.com/riddhisrivastava1516)
 
-Demo Video Link: https://drive.google.com/file/d/1OevbC5pjOdXEEDgWNwaF-z9yUkD3uhaL/view?usp=drive_link
-
-Presentation link: https://docs.google.com/presentation/d/1lDOJTrNtkML59Wda4y5MqQN9WG45iwBz/edit?usp=drive_link&ouid=114347310509330026772&rtpof=true&sd=true
 
 
 1. Text-to-Speech (TTS)
